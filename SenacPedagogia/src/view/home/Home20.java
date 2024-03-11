@@ -11,9 +11,15 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Frame;
+import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+import modelo.ProfessorVO;
+import servicos.ProfessorServicos;
+import servicos.ServicosFactory;
 
 /**
  *
@@ -27,18 +33,19 @@ public class Home20 extends javax.swing.JFrame {
      * Creates new form Home20
      */
     public Home20() {
+
         initComponents();
         Home20.this.getRootPane().setBorder(new LineBorder(new Color(76, 41, 211)));
-        lblTitle.setText(this.getTitle());
+        lblTitle.setText("Senac");
         cardLayout = (CardLayout) pnlRight.getLayout();
 
         if (OSUtils.getOSType() == OSUtils.OSType.MacOS) {
             pnlTop.remove(pnlTitle);
             pnlTop.remove(pnlRight);
-            
+
             pnlTop.add(pnlTitle, BorderLayout.EAST);
             pnlTop.add(pnlActions, BorderLayout.WEST);
-            
+
             pnlActions.remove(lblClose);
             pnlActions.remove(lblMaximize);
             pnlActions.remove(lblMinimize);
@@ -46,19 +53,19 @@ public class Home20 extends javax.swing.JFrame {
             pnlActions.add(lblClose);
             pnlActions.add(lblMaximize);
             pnlActions.add(lblMinimize);
-            
+
             pnlTitle.remove(lblTitle);
             pnlTitle.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 8));
-            pnlTitle.add(lblTitle);      
-            
-        }        
-           if (OSUtils.getOSType() == OSUtils.OSType.Windows) {
+            pnlTitle.add(lblTitle);
+
+        }
+        if (OSUtils.getOSType() == OSUtils.OSType.Windows) {
             pnlTop.remove(pnlTitle);
             pnlTop.remove(pnlRight);
-            
+
             pnlTop.add(pnlTitle, BorderLayout.WEST);
             pnlTop.add(pnlActions, BorderLayout.EAST);
-            
+
             pnlActions.remove(lblClose);
             pnlActions.remove(lblMaximize);
             pnlActions.remove(lblMinimize);
@@ -66,11 +73,11 @@ public class Home20 extends javax.swing.JFrame {
             pnlActions.add(lblMinimize);
             pnlActions.add(lblMaximize);
             pnlActions.add(lblClose);
-            
+
             pnlTitle.remove(lblTitle);
             pnlTitle.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 8));
-            pnlTitle.add(lblTitle);      
-            
+            pnlTitle.add(lblTitle);
+
         }
     }
 
@@ -112,8 +119,11 @@ public class Home20 extends javax.swing.JFrame {
         btn_data = new javax.swing.JPanel();
         ind_data = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
+        btn_data1 = new javax.swing.JPanel();
+        ind_data1 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
         pnlRight = new javax.swing.JPanel();
-        pnlDataCards = new javax.swing.JPanel();
+        pnlCadastroProfessores = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -122,7 +132,17 @@ public class Home20 extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        pnlTypography = new javax.swing.JPanel();
+        pnlAlunos = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtProduto1 = new javax.swing.JTable();
+        pnlProfessores = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtProduto = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        jtfNome = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Title Frame Test");
@@ -179,8 +199,8 @@ public class Home20 extends javax.swing.JFrame {
         pnlTitle.setPreferredSize(new java.awt.Dimension(200, 30));
         pnlTitle.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 8));
 
-        lblTitle.setForeground(new java.awt.Color(204, 204, 204));
-        lblTitle.setText("Title");
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setText("Senac");
         pnlTitle.add(lblTitle);
 
         pnlTop.add(pnlTitle, java.awt.BorderLayout.LINE_START);
@@ -190,7 +210,7 @@ public class Home20 extends javax.swing.JFrame {
         pnlParent.setLayout(new java.awt.BorderLayout());
 
         sidepane.setBackground(new java.awt.Color(255, 102, 0));
-        sidepane.setForeground(new java.awt.Color(51, 51, 51));
+        sidepane.setForeground(new java.awt.Color(255, 255, 255));
         sidepane.setPreferredSize(new java.awt.Dimension(250, 200));
         sidepane.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -228,20 +248,20 @@ public class Home20 extends javax.swing.JFrame {
         btn_typo.add(ind_typo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel12.setText("Typography");
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Alunos");
         btn_typo.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Senac");
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Pedagogia");
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("V2.11");
 
         btn_fonts.setBackground(new java.awt.Color(255, 102, 0));
@@ -269,8 +289,8 @@ public class Home20 extends javax.swing.JFrame {
         btn_fonts.add(ind_fonts, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel5.setText("Fonts");
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Professores");
         btn_fonts.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
         btn_icons.setBackground(new java.awt.Color(255, 102, 0));
@@ -298,17 +318,18 @@ public class Home20 extends javax.swing.JFrame {
         btn_icons.add(ind_icons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel6.setText("Icons");
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Cronogramas");
         btn_icons.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Consultas");
+        jLabel7.setText("CONSULTAS");
+        jLabel7.setToolTipText("");
 
-        jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel8.setText("COMPONENTS");
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("CADASTROS");
 
         btn_btns.setBackground(new java.awt.Color(255, 102, 0));
         btn_btns.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -335,8 +356,8 @@ public class Home20 extends javax.swing.JFrame {
         btn_btns.add(ind_btns, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel9.setText("Buttons");
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Alunos");
         btn_btns.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
         btn_data.setBackground(new java.awt.Color(255, 102, 0));
@@ -364,9 +385,38 @@ public class Home20 extends javax.swing.JFrame {
         btn_data.add(ind_data, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel10.setText("Datacards");
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Professores");
         btn_data.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+
+        btn_data1.setBackground(new java.awt.Color(255, 102, 0));
+        btn_data1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btn_data1MousePressed(evt);
+            }
+        });
+        btn_data1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ind_data1.setOpaque(false);
+        ind_data1.setPreferredSize(new java.awt.Dimension(4, 40));
+
+        javax.swing.GroupLayout ind_data1Layout = new javax.swing.GroupLayout(ind_data1);
+        ind_data1.setLayout(ind_data1Layout);
+        ind_data1Layout.setHorizontalGroup(
+            ind_data1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 4, Short.MAX_VALUE)
+        );
+        ind_data1Layout.setVerticalGroup(
+            ind_data1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        btn_data1.add(ind_data1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
+
+        jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Cronogramas");
+        btn_data1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
         javax.swing.GroupLayout sidepaneLayout = new javax.swing.GroupLayout(sidepane);
         sidepane.setLayout(sidepaneLayout);
@@ -380,19 +430,23 @@ public class Home20 extends javax.swing.JFrame {
             .addGroup(sidepaneLayout.createSequentialGroup()
                 .addGroup(sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(sidepaneLayout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabel8))
-                    .addGroup(sidepaneLayout.createSequentialGroup()
-                        .addGap(62, 62, 62)
                         .addGroup(sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
                             .addGroup(sidepaneLayout.createSequentialGroup()
-                                .addGroup(sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)))))
-                .addContainerGap(82, Short.MAX_VALUE))
+                                .addGap(63, 63, 63)
+                                .addComponent(jLabel8))
+                            .addGroup(sidepaneLayout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addGroup(sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addGroup(sidepaneLayout.createSequentialGroup()
+                                        .addGroup(sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel1))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel3)))))
+                        .addGap(0, 72, Short.MAX_VALUE))
+                    .addComponent(btn_data1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         sidepaneLayout.setVerticalGroup(
             sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,7 +471,9 @@ public class Home20 extends javax.swing.JFrame {
                 .addComponent(btn_btns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_data1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         pnlParent.add(sidepane, java.awt.BorderLayout.LINE_START);
@@ -450,21 +506,21 @@ public class Home20 extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(102, 102, 102));
         jLabel17.setText("Uninstalls");
 
-        javax.swing.GroupLayout pnlDataCardsLayout = new javax.swing.GroupLayout(pnlDataCards);
-        pnlDataCards.setLayout(pnlDataCardsLayout);
-        pnlDataCardsLayout.setHorizontalGroup(
-            pnlDataCardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDataCardsLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlCadastroProfessoresLayout = new javax.swing.GroupLayout(pnlCadastroProfessores);
+        pnlCadastroProfessores.setLayout(pnlCadastroProfessoresLayout);
+        pnlCadastroProfessoresLayout.setHorizontalGroup(
+            pnlCadastroProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCadastroProfessoresLayout.createSequentialGroup()
                 .addGap(116, 116, 116)
-                .addGroup(pnlDataCardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlCadastroProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
                     .addComponent(jLabel4)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlDataCardsLayout.createSequentialGroup()
+                    .addGroup(pnlCadastroProfessoresLayout.createSequentialGroup()
                         .addGap(130, 130, 130)
-                        .addGroup(pnlDataCardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlCadastroProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl_instals)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDataCardsLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroProfessoresLayout.createSequentialGroup()
                                 .addComponent(jLabel16)
                                 .addGap(26, 26, 26)))
                         .addGap(45, 45, 45)
@@ -475,14 +531,14 @@ public class Home20 extends javax.swing.JFrame {
                 .addComponent(jLabel17)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
-        pnlDataCardsLayout.setVerticalGroup(
-            pnlDataCardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDataCardsLayout.createSequentialGroup()
-                .addGroup(pnlDataCardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlDataCardsLayout.createSequentialGroup()
+        pnlCadastroProfessoresLayout.setVerticalGroup(
+            pnlCadastroProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCadastroProfessoresLayout.createSequentialGroup()
+                .addGroup(pnlCadastroProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlCadastroProfessoresLayout.createSequentialGroup()
                         .addGap(292, 292, 292)
                         .addComponent(jLabel17))
-                    .addGroup(pnlDataCardsLayout.createSequentialGroup()
+                    .addGroup(pnlCadastroProfessoresLayout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
@@ -490,34 +546,137 @@ public class Home20 extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(63, 63, 63)
-                        .addGroup(pnlDataCardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlDataCardsLayout.createSequentialGroup()
+                        .addGroup(pnlCadastroProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlCadastroProfessoresLayout.createSequentialGroup()
                                 .addGap(20, 20, 20)
                                 .addComponent(jLabel16)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lbl_instals))
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDataCardsLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroProfessoresLayout.createSequentialGroup()
                                 .addGap(53, 53, 53)
                                 .addComponent(jLabel15)
                                 .addGap(53, 53, 53)))))
                 .addContainerGap(190, Short.MAX_VALUE))
         );
 
-        pnlRight.add(pnlDataCards, "card1");
+        pnlRight.add(pnlCadastroProfessores, "card1");
 
-        javax.swing.GroupLayout pnlTypographyLayout = new javax.swing.GroupLayout(pnlTypography);
-        pnlTypography.setLayout(pnlTypographyLayout);
-        pnlTypographyLayout.setHorizontalGroup(
-            pnlTypographyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 774, Short.MAX_VALUE)
+        jLabel18.setText("Essa é a tela do aluno");
+
+        jtProduto1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Código", "Nome", "Valor Custo", "Quantidade"
+            }
+        ));
+        jScrollPane2.setViewportView(jtProduto1);
+
+        javax.swing.GroupLayout pnlAlunosLayout = new javax.swing.GroupLayout(pnlAlunos);
+        pnlAlunos.setLayout(pnlAlunosLayout);
+        pnlAlunosLayout.setHorizontalGroup(
+            pnlAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAlunosLayout.createSequentialGroup()
+                .addGap(245, 245, 245)
+                .addComponent(jLabel18)
+                .addContainerGap(424, Short.MAX_VALUE))
+            .addGroup(pnlAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlAlunosLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-        pnlTypographyLayout.setVerticalGroup(
-            pnlTypographyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+        pnlAlunosLayout.setVerticalGroup(
+            pnlAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAlunosLayout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addComponent(jLabel18)
+                .addContainerGap(454, Short.MAX_VALUE))
+            .addGroup(pnlAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlAlunosLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        pnlRight.add(pnlTypography, "card2");
+        pnlRight.add(pnlAlunos, "card2");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel11.setText("Essa é a tela do professores");
+
+        jtProduto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Código", "Nome", "Valor Custo", "Quantidade"
+            }
+        ));
+        jScrollPane1.setViewportView(jtProduto);
+
+        jButton1.setText("jButton1");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton1MousePressed(evt);
+            }
+        });
+
+        jLabel19.setText("jLabel19");
+
+        jtfNome.setText("000");
+
+        javax.swing.GroupLayout pnlProfessoresLayout = new javax.swing.GroupLayout(pnlProfessores);
+        pnlProfessores.setLayout(pnlProfessoresLayout);
+        pnlProfessoresLayout.setHorizontalGroup(
+            pnlProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlProfessoresLayout.createSequentialGroup()
+                .addGroup(pnlProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlProfessoresLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel19)
+                        .addGap(44, 44, 44)
+                        .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 210, Short.MAX_VALUE))
+                    .addGroup(pnlProfessoresLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
+            .addGroup(pnlProfessoresLayout.createSequentialGroup()
+                .addGap(313, 313, 313)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlProfessoresLayout.setVerticalGroup(
+            pnlProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlProfessoresLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(pnlProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel19)
+                        .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(90, 90, 90)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        pnlRight.add(pnlProfessores, "card3");
 
         pnlParent.add(pnlRight, java.awt.BorderLayout.CENTER);
 
@@ -526,6 +685,11 @@ public class Home20 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     int xy, xx;
+
+    DefaultTableModel dtm = new DefaultTableModel(
+            new Object[][]{},
+            new Object[]{"Código", "Nome", "Valor Custo", "quantidade"}
+    );
     private void sidepaneMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidepaneMouseDragged
         // TODO add your handling code here:
 
@@ -568,6 +732,8 @@ public class Home20 extends javax.swing.JFrame {
         ind_data.setOpaque(false);
         ind_fonts.setOpaque(true);
         ind_icons.setOpaque(false);
+
+        cardLayout.show(pnlRight, "card3");
 
     }//GEN-LAST:event_btn_fontsMousePressed
 
@@ -657,13 +823,64 @@ public class Home20 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pnlTopMouseClicked
 
+    private void btn_data1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_data1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_data1MousePressed
+
+    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+        // TODO add your handling code here:
+        filtrar();
+    }//GEN-LAST:event_jButton1MousePressed
+
+    private void filtrar() {
+        try {
+            if (jtfNome.getText().isEmpty()) {
+                //preencherTabela();
+            } else {
+                ProfessorServicos ps = ServicosFactory.getProfessorServicos();
+                //String pesquisa = (String) jtfNome.getSelectedItem();
+                String query;
+//                if (pesquisa.equals("Código")) {
+//                    query = "where idproduto = " + jtfNome.getText();
+//                } else if (pesquisa.equals("Nome")) {
+//                    query = "where nome like '%" + jtfNome.getText() + "%' ";
+//                } else if (pesquisa.equals("Valor Custo")) {
+//                    query = "where valorcusto = " + jtfNome.getText();
+//                } else {
+//                    query = "where quantidade = " + jtfNome.getText();
+//                }//fim do else
+                query = "where idproduto = " + jtfNome.getText();
+                //Criando um ArrayLista<produtoVO> vaziom, para receber o ArrayList com os dados
+                ArrayList<ProfessorVO> prod = new ArrayList<>();
+
+                //Recebendo o ArrayList cheio no Produto
+                prod = ps.filtrarProduto(query);
+
+                for (int i = 0; i < prod.size(); i++) {
+                    dtm.addRow(new String[]{
+                        //String.valueOf(prod.get(i).getIdProduto()),
+                        String.valueOf(prod.get(i).getNome()), //String.valueOf(prod.get(i).getValorCusto()),
+                    //String.valueOf(prod.get(i).getQuantidade()),
+                    });
+                }//fecha o laço for
+
+                //Adicionando o modelo de tabela com os dados na tabela jtProduto
+                jtProduto.setModel(dtm);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Erro ao filtrar produto! GUIManutençãoProduto.filtrar " + e.getMessage());
+        }
+    }//fecha o método filtrar
+
     // set and reset color
     void setColor(JPanel panel) {
-        panel.setBackground(new Color(135, 112, 225));
+        panel.setBackground(new Color(40, 37, 38));
     }
 
     void resetColor(JPanel panel) {
-        panel.setBackground(new Color(76, 41, 211));
+        panel.setBackground(new Color(255, 102, 0));
     }
 
     /**
@@ -704,21 +921,28 @@ public class Home20 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btn_btns;
     private javax.swing.JPanel btn_data;
+    private javax.swing.JPanel btn_data1;
     private javax.swing.JPanel btn_fonts;
     private javax.swing.JPanel btn_icons;
     private javax.swing.JPanel btn_typo;
     private javax.swing.JPanel ind_btns;
     private javax.swing.JPanel ind_data;
+    private javax.swing.JPanel ind_data1;
     private javax.swing.JPanel ind_fonts;
     private javax.swing.JPanel ind_icons;
     private javax.swing.JPanel ind_typo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -727,20 +951,26 @@ public class Home20 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTable jtProduto;
+    private javax.swing.JTable jtProduto1;
+    private javax.swing.JTextField jtfNome;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblMaximize;
     private javax.swing.JLabel lblMinimize;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lbl_instals;
     private javax.swing.JPanel pnlActions;
-    private javax.swing.JPanel pnlDataCards;
+    private javax.swing.JPanel pnlAlunos;
+    private javax.swing.JPanel pnlCadastroProfessores;
     private javax.swing.JPanel pnlParent;
+    private javax.swing.JPanel pnlProfessores;
     private javax.swing.JPanel pnlRight;
     private javax.swing.JPanel pnlTitle;
     private javax.swing.JPanel pnlTop;
-    private javax.swing.JPanel pnlTypography;
     private javax.swing.JPanel sidepane;
     // End of variables declaration//GEN-END:variables
 }
