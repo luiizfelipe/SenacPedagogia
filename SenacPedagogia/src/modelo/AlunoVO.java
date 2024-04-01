@@ -6,21 +6,22 @@ package modelo;
  * @author cralves
  */
 public class AlunoVO {
-    private long matricula;
+    private long idAluno;
     private String nome;
+    private String telefone;
     private String cpf;
+    private String email;
     private String data_nascimento;
     private String endereco;
-    private String telefone;
-    
-    
-    
-    public long getMatricula() {
-        return matricula;
+    private String createAccount;
+    private String lastLogon;
+
+    public long getIdAluno() {
+        return idAluno;
     }
 
-    public void setMatricula(long matricula) {
-        this.matricula = matricula;
+    public void setIdAluno(long idAluno) {
+        this.idAluno = idAluno;
     }
 
     public String getNome() {
@@ -31,12 +32,28 @@ public class AlunoVO {
         this.nome = nome;
     }
 
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
     public String getCpf() {
         return cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getData_nascimento() {
@@ -55,13 +72,22 @@ public class AlunoVO {
         this.endereco = endereco;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getCreateAccount() {
+        return createAccount;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setCreateAccount(String createAccount) {
+        this.createAccount = createAccount;
     }
+
+    public String getLastLogon() {
+        return lastLogon;
+    }
+
+    public void setLastLogon(String lastLogon) {
+        this.lastLogon = lastLogon;
+    }
+    
     
 
    

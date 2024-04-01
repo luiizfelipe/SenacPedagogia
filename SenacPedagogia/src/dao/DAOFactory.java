@@ -22,4 +22,12 @@ public class DAOFactory {
     }//fim do método getProdutoDAO
     
     
+    private static CronogramaDAO CronogramaDAO = new CronogramaDAO();
+    
+    //Faz uma cópia dos métodos da produtoDAO e disponibilizar para a classe que solicitar
+    public static CronogramaDAO getCronogramaDAO() {
+        return CronogramaDAO;
+    }//fim do método getProdutoDAO
+    
+    
 }//fim da classe DAOFactory

@@ -6,21 +6,48 @@ package modelo;
  * @author cralves
  */
 public class ProfessorVO {
-    private long matricula;
+    private long idProfessor;
     private String nome;
+    private String email;
+
+    
     private String cpf;
     private String data_nascimento;
     private String endereco;
     private String telefone;
-    
-    
-    
-    public long getMatricula() {
-        return matricula;
+    private String createAccount;
+    private String lastLogin;
+
+    public String getCreateAccount() {
+        return createAccount;
     }
 
-    public void setMatricula(long matricula) {
-        this.matricula = matricula;
+    public void setCreateAccount(String createAccount) {
+        this.createAccount = createAccount;
+    }
+
+    public String getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(String lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+    
+    
+public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public long getIdProfessor() {
+        return idProfessor;
+    }
+
+    public void setIdProfessor(long idProfessor) {
+        this.idProfessor = idProfessor;
     }
 
     public String getNome() {

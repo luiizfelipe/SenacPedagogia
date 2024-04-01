@@ -21,15 +21,31 @@ public class ProfessorDAO {
         Connection con = new ConexaoBanco().getConexao();
         
         try {
-            //INSERT INTO alunos VALUES (null, 'Nome',12/2/2005,'51989638990','Rua Vladimir Heronzeg 25', '12312312331');
-            String sql = "INSERT INTO alunos VALUES (null, ?, ?, ?, ?, ?)";
-            //String sql = "INSERT INTO alunos VALUES (null, 'Nome',DATE('2005-2-15'),'51989638990','Rua Vladimir Heronzeg 25', '12312312331')";
+            // INSERT INTO Professores VALUES (NULL, " NOME PROFESSOR", "EMAIL@GMAIL", '2023-01-01', 'Rua', 'telefone', '123123', now(), now());
+            
+            /*
+            
+            CREATE TABLE professores (
+            idProfessor INTEGER PRIMARY KEY AUTO_INCREMENT,
+            nome VARCHAR(255),
+            email VARCHAR(255),
+            cpf VARCHAR(14),
+            data_nascimento DATE,
+            endereco VARCHAR(255),
+            telefone VARCHAR(20),
+            createAccount DATE,
+            lastLogin DATE
+        );
+
+            */
+            String sql = "INSERT INTO professores(nome,email) VALUES (null, ?, ?, ?, ?, ?, ?, now(), now())";
             PreparedStatement pstm = con.prepareStatement(sql);
             pstm.setString(1, pVO.getNome() );
-            pstm.setString(2, pVO.getCpf());
+            pstm.setString(2, pVO.getEmail());
             pstm.setString(3, pVO.getData_nascimento());
-            pstm.setString(4, pVO.getTelefone());
             pstm.setString(5, pVO.getEndereco());
+            pstm.setString(4, pVO.getTelefone());
+            pstm.setString(5, pVO.getCpf());
             
             pstm.execute();
             pstm.close();
@@ -47,7 +63,7 @@ public class ProfessorDAO {
         Connection con = new ConexaoBanco().getConexao();
         
         try {
-            String sql = "Select * from produto";
+            String sql = "Select * from professores";
             PreparedStatement pstm = con.prepareStatement(sql);
             
             ResultSet rs = pstm.executeQuery();
@@ -55,11 +71,17 @@ public class ProfessorDAO {
             
             while( rs.next() ){
                 ProfessorVO pVO = new ProfessorVO();
-                
-                //pVO.setIdProduto(rs.getLong("idproduto"));
+                pVO.setIdProfessor(rs.getLong("id_professor"));
                 pVO.setNome(rs.getString("nome"));
-                //pVO.setValorCusto(rs.getDouble("valorCusto"));
-                //pVO.setQuantidade(rs.getInt("quantidade"));
+                pVO.setEmail(rs.getString("email"));
+                pVO.setData_nascimento(rs.getString("data_nasc"));
+                pVO.setEndereco(rs.getString("endereco"));
+                pVO.setTelefone(rs.getString("fone"));
+                pVO.setCpf(rs.getString("cpf"));
+                pVO.setCreateAccount(rs.getString("create_dat"));
+                pVO.setLastLogin(rs.getString("loaded_at"));
+                
+               
                 
                 pro.add(pVO);
             }//fim do while
@@ -69,7 +91,7 @@ public class ProfessorDAO {
             return pro;
             
         } catch (SQLException se) {
-            throw new SQLException("Erro ao buscar produto! " + se.getMessage());
+            throw new SQLException("Erro ao buscar professor! " + se.getMessage());
         }finally {
             con.close();
         }//fim da finally
@@ -79,7 +101,7 @@ public class ProfessorDAO {
         Connection con = new ConexaoBanco().getConexao();
         
         try {
-            String sql = "select * from produto " + query;
+            String sql = "select * from professores " + query;
             PreparedStatement pstm = con.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             
@@ -96,7 +118,7 @@ public class ProfessorDAO {
             pstm.close();
             return pro;
         } catch (SQLException se) {
-            throw new SQLException("Erro ao filtrar produto! " + se.getMessage());
+            throw new SQLException("Erro ao filtrar professores! " + se.getMessage());
         }finally{
             con.close();
         }//fim da finally
@@ -106,14 +128,14 @@ public class ProfessorDAO {
         Connection con = new ConexaoBanco().getConexao();
         
         try{
-            String sql = "delete from produto where idproduto = ?";
+            String sql = "delete from produto where id_professor = ?";
             PreparedStatement pstm = con.prepareStatement(sql);
             
             pstm.setLong(1, idproduto);
             pstm.execute();
             pstm.close();
         }catch (SQLException se){
-            throw new SQLException("Erro ao deletar produto! ProdutoDAO " + se.getMessage());
+            throw new SQLException("Erro ao deletar professores! ProdutoDAO " + se.getMessage());
         }finally{
             con.close();
         }//fim da finally

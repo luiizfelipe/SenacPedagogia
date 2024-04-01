@@ -6,6 +6,8 @@
 package view.home;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -20,6 +22,12 @@ import javax.swing.table.DefaultTableModel;
 import modelo.ProfessorVO;
 import servicos.ProfessorServicos;
 import servicos.ServicosFactory;
+import view.panel.CadastrarAluno;
+import view.panel.CadastrarCronograma;
+import view.panel.CadastrarProfessor;
+import view.panel.ConsultarAluno;
+import view.panel.ConsultarCronograma;
+import view.panel.ConsultarProfessor;
 
 /**
  *
@@ -29,13 +37,55 @@ public class Home20 extends javax.swing.JFrame {
 
     private CardLayout cardLayout;
 
+        List<JPanel> listaDeInc;
+        List<JPanel> listaDebtn;
+    
+    
     /**
      * Creates new form Home20
      */
     public Home20() {
 
         initComponents();
+        
+        
+        
+        listaDeInc = new ArrayList<>();
+        listaDeInc.add(ind_consultaAluno);
+        listaDeInc.add(ind_CadastraAluno);
+        listaDeInc.add(ind_CadastraProfessor);
+        listaDeInc.add(ind_CadastraCronograma);
+        listaDeInc.add(ind_ConsultaProfessor);
+        listaDeInc.add(ind_ConsultaCronograma);
+        
+        listaDebtn = new ArrayList<>();
+        listaDebtn.add(btn_ConsultarAluno);
+        listaDebtn.add(btn_CadastrarProfessor);
+        listaDebtn.add(btn_CadastrarAluno);
+        listaDebtn.add(btn_consultar_professor);
+        listaDebtn.add(btn_consultarCronograma);  
+        listaDebtn.add(btn_CadastrarCronograma);
+        
+        CadastrarAluno cda = new CadastrarAluno();
+        CadastrarProfessor cdp = new CadastrarProfessor();
+        CadastrarCronograma cdc = new CadastrarCronograma();
+        
+        ConsultarAluno cca = new ConsultarAluno();
+        ConsultarProfessor ccp = new ConsultarProfessor();
+        ConsultarCronograma ccc = new ConsultarCronograma();
+        
+        pnlRight.add(cda, "cadastrarAluno");
+        pnlRight.add(cdp, "cadastrarProfessor");
+        pnlRight.add(cdc, "cadastrarCronograma");
+                        
+        pnlRight.add(cca, "consultarAluno");
+        pnlRight.add(ccp, "consultarProfessor");
+        pnlRight.add(ccc, "consultarCronograma");
+    
+        
         Home20.this.getRootPane().setBorder(new LineBorder(new Color(76, 41, 211)));
+    
+        
         lblTitle.setText("Senac");
         cardLayout = (CardLayout) pnlRight.getLayout();
 
@@ -79,6 +129,8 @@ public class Home20 extends javax.swing.JFrame {
             pnlTitle.add(lblTitle);
 
         }
+        
+        
     }
 
     /**
@@ -99,50 +151,39 @@ public class Home20 extends javax.swing.JFrame {
         lblTitle = new javax.swing.JLabel();
         pnlParent = new javax.swing.JPanel();
         sidepane = new javax.swing.JPanel();
-        btn_typo = new javax.swing.JPanel();
-        ind_typo = new javax.swing.JPanel();
+        btn_ConsultarAluno = new javax.swing.JPanel();
+        ind_consultaAluno = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btn_fonts = new javax.swing.JPanel();
-        ind_fonts = new javax.swing.JPanel();
+        btn_consultar_professor = new javax.swing.JPanel();
+        ind_ConsultaProfessor = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        btn_icons = new javax.swing.JPanel();
-        ind_icons = new javax.swing.JPanel();
+        btn_consultarCronograma = new javax.swing.JPanel();
+        ind_ConsultaCronograma = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        btn_btns = new javax.swing.JPanel();
-        ind_btns = new javax.swing.JPanel();
+        btn_CadastrarAluno = new javax.swing.JPanel();
+        ind_CadastraAluno = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        btn_data = new javax.swing.JPanel();
-        ind_data = new javax.swing.JPanel();
+        btn_CadastrarProfessor = new javax.swing.JPanel();
+        ind_CadastraProfessor = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        btn_data1 = new javax.swing.JPanel();
-        ind_data1 = new javax.swing.JPanel();
+        btn_CadastrarCronograma = new javax.swing.JPanel();
+        ind_CadastraCronograma = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        pnlRight = new javax.swing.JPanel();
-        pnlCadastroProfessores = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
-        lbl_instals = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        pnlAlunos = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtProduto1 = new javax.swing.JTable();
-        pnlProfessores = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtProduto = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jLabel19 = new javax.swing.JLabel();
-        jtfNome = new javax.swing.JTextField();
+        btn_CadastrarAluno1 = new javax.swing.JPanel();
+        ind_CadastraAluno1 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        btn_CadastrarAluno2 = new javax.swing.JPanel();
+        ind_CadastraAluno2 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        pnlRight = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Title Frame Test");
@@ -223,34 +264,34 @@ public class Home20 extends javax.swing.JFrame {
             }
         });
 
-        btn_typo.setBackground(new java.awt.Color(255, 102, 0));
-        btn_typo.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_ConsultarAluno.setBackground(new java.awt.Color(255, 102, 0));
+        btn_ConsultarAluno.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btn_typoMousePressed(evt);
+                btn_ConsultarAlunoMousePressed(evt);
             }
         });
-        btn_typo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btn_ConsultarAluno.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ind_typo.setOpaque(false);
-        ind_typo.setPreferredSize(new java.awt.Dimension(4, 40));
+        ind_consultaAluno.setOpaque(false);
+        ind_consultaAluno.setPreferredSize(new java.awt.Dimension(4, 40));
 
-        javax.swing.GroupLayout ind_typoLayout = new javax.swing.GroupLayout(ind_typo);
-        ind_typo.setLayout(ind_typoLayout);
-        ind_typoLayout.setHorizontalGroup(
-            ind_typoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout ind_consultaAlunoLayout = new javax.swing.GroupLayout(ind_consultaAluno);
+        ind_consultaAluno.setLayout(ind_consultaAlunoLayout);
+        ind_consultaAlunoLayout.setHorizontalGroup(
+            ind_consultaAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 4, Short.MAX_VALUE)
         );
-        ind_typoLayout.setVerticalGroup(
-            ind_typoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        ind_consultaAlunoLayout.setVerticalGroup(
+            ind_consultaAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 40, Short.MAX_VALUE)
         );
 
-        btn_typo.add(ind_typo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
+        btn_ConsultarAluno.add(ind_consultaAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Alunos");
-        btn_typo.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+        btn_ConsultarAluno.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -264,189 +305,259 @@ public class Home20 extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("V2.11");
 
-        btn_fonts.setBackground(new java.awt.Color(255, 102, 0));
-        btn_fonts.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_consultar_professor.setBackground(new java.awt.Color(255, 102, 0));
+        btn_consultar_professor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btn_fontsMousePressed(evt);
+                btn_consultar_professorMousePressed(evt);
             }
         });
-        btn_fonts.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btn_consultar_professor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ind_fonts.setOpaque(false);
-        ind_fonts.setPreferredSize(new java.awt.Dimension(4, 40));
+        ind_ConsultaProfessor.setOpaque(false);
+        ind_ConsultaProfessor.setPreferredSize(new java.awt.Dimension(4, 40));
 
-        javax.swing.GroupLayout ind_fontsLayout = new javax.swing.GroupLayout(ind_fonts);
-        ind_fonts.setLayout(ind_fontsLayout);
-        ind_fontsLayout.setHorizontalGroup(
-            ind_fontsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout ind_ConsultaProfessorLayout = new javax.swing.GroupLayout(ind_ConsultaProfessor);
+        ind_ConsultaProfessor.setLayout(ind_ConsultaProfessorLayout);
+        ind_ConsultaProfessorLayout.setHorizontalGroup(
+            ind_ConsultaProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 4, Short.MAX_VALUE)
         );
-        ind_fontsLayout.setVerticalGroup(
-            ind_fontsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        ind_ConsultaProfessorLayout.setVerticalGroup(
+            ind_ConsultaProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 40, Short.MAX_VALUE)
         );
 
-        btn_fonts.add(ind_fonts, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
+        btn_consultar_professor.add(ind_ConsultaProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Professores");
-        btn_fonts.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+        btn_consultar_professor.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
-        btn_icons.setBackground(new java.awt.Color(255, 102, 0));
-        btn_icons.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_consultarCronograma.setBackground(new java.awt.Color(255, 102, 0));
+        btn_consultarCronograma.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btn_iconsMousePressed(evt);
+                btn_consultarCronogramaMousePressed(evt);
             }
         });
-        btn_icons.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btn_consultarCronograma.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ind_icons.setOpaque(false);
-        ind_icons.setPreferredSize(new java.awt.Dimension(4, 40));
+        ind_ConsultaCronograma.setOpaque(false);
+        ind_ConsultaCronograma.setPreferredSize(new java.awt.Dimension(4, 40));
 
-        javax.swing.GroupLayout ind_iconsLayout = new javax.swing.GroupLayout(ind_icons);
-        ind_icons.setLayout(ind_iconsLayout);
-        ind_iconsLayout.setHorizontalGroup(
-            ind_iconsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout ind_ConsultaCronogramaLayout = new javax.swing.GroupLayout(ind_ConsultaCronograma);
+        ind_ConsultaCronograma.setLayout(ind_ConsultaCronogramaLayout);
+        ind_ConsultaCronogramaLayout.setHorizontalGroup(
+            ind_ConsultaCronogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 4, Short.MAX_VALUE)
         );
-        ind_iconsLayout.setVerticalGroup(
-            ind_iconsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        ind_ConsultaCronogramaLayout.setVerticalGroup(
+            ind_ConsultaCronogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 40, Short.MAX_VALUE)
         );
 
-        btn_icons.add(ind_icons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
+        btn_consultarCronograma.add(ind_ConsultaCronograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Cronogramas");
-        btn_icons.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+        btn_consultarCronograma.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("CONSULTAS");
+        jLabel7.setText("Turmas");
         jLabel7.setToolTipText("");
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("CADASTROS");
 
-        btn_btns.setBackground(new java.awt.Color(255, 102, 0));
-        btn_btns.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_CadastrarAluno.setBackground(new java.awt.Color(255, 102, 0));
+        btn_CadastrarAluno.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btn_btnsMousePressed(evt);
+                btn_CadastrarAlunoMousePressed(evt);
             }
         });
-        btn_btns.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btn_CadastrarAluno.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ind_btns.setOpaque(false);
-        ind_btns.setPreferredSize(new java.awt.Dimension(4, 40));
+        ind_CadastraAluno.setOpaque(false);
+        ind_CadastraAluno.setPreferredSize(new java.awt.Dimension(4, 40));
 
-        javax.swing.GroupLayout ind_btnsLayout = new javax.swing.GroupLayout(ind_btns);
-        ind_btns.setLayout(ind_btnsLayout);
-        ind_btnsLayout.setHorizontalGroup(
-            ind_btnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout ind_CadastraAlunoLayout = new javax.swing.GroupLayout(ind_CadastraAluno);
+        ind_CadastraAluno.setLayout(ind_CadastraAlunoLayout);
+        ind_CadastraAlunoLayout.setHorizontalGroup(
+            ind_CadastraAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 4, Short.MAX_VALUE)
         );
-        ind_btnsLayout.setVerticalGroup(
-            ind_btnsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        ind_CadastraAlunoLayout.setVerticalGroup(
+            ind_CadastraAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 40, Short.MAX_VALUE)
         );
 
-        btn_btns.add(ind_btns, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
+        btn_CadastrarAluno.add(ind_CadastraAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Alunos");
-        btn_btns.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+        btn_CadastrarAluno.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
-        btn_data.setBackground(new java.awt.Color(255, 102, 0));
-        btn_data.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_CadastrarProfessor.setBackground(new java.awt.Color(255, 102, 0));
+        btn_CadastrarProfessor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btn_dataMousePressed(evt);
+                btn_CadastrarProfessorMousePressed(evt);
             }
         });
-        btn_data.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btn_CadastrarProfessor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ind_data.setOpaque(false);
-        ind_data.setPreferredSize(new java.awt.Dimension(4, 40));
+        ind_CadastraProfessor.setOpaque(false);
+        ind_CadastraProfessor.setPreferredSize(new java.awt.Dimension(4, 40));
 
-        javax.swing.GroupLayout ind_dataLayout = new javax.swing.GroupLayout(ind_data);
-        ind_data.setLayout(ind_dataLayout);
-        ind_dataLayout.setHorizontalGroup(
-            ind_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout ind_CadastraProfessorLayout = new javax.swing.GroupLayout(ind_CadastraProfessor);
+        ind_CadastraProfessor.setLayout(ind_CadastraProfessorLayout);
+        ind_CadastraProfessorLayout.setHorizontalGroup(
+            ind_CadastraProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 4, Short.MAX_VALUE)
         );
-        ind_dataLayout.setVerticalGroup(
-            ind_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        ind_CadastraProfessorLayout.setVerticalGroup(
+            ind_CadastraProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 40, Short.MAX_VALUE)
         );
 
-        btn_data.add(ind_data, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
+        btn_CadastrarProfessor.add(ind_CadastraProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Professores");
-        btn_data.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+        btn_CadastrarProfessor.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
-        btn_data1.setBackground(new java.awt.Color(255, 102, 0));
-        btn_data1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_CadastrarCronograma.setBackground(new java.awt.Color(255, 102, 0));
+        btn_CadastrarCronograma.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btn_data1MousePressed(evt);
+                btn_CadastrarCronogramaMousePressed(evt);
             }
         });
-        btn_data1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btn_CadastrarCronograma.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ind_data1.setOpaque(false);
-        ind_data1.setPreferredSize(new java.awt.Dimension(4, 40));
+        ind_CadastraCronograma.setOpaque(false);
+        ind_CadastraCronograma.setPreferredSize(new java.awt.Dimension(4, 40));
 
-        javax.swing.GroupLayout ind_data1Layout = new javax.swing.GroupLayout(ind_data1);
-        ind_data1.setLayout(ind_data1Layout);
-        ind_data1Layout.setHorizontalGroup(
-            ind_data1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout ind_CadastraCronogramaLayout = new javax.swing.GroupLayout(ind_CadastraCronograma);
+        ind_CadastraCronograma.setLayout(ind_CadastraCronogramaLayout);
+        ind_CadastraCronogramaLayout.setHorizontalGroup(
+            ind_CadastraCronogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 4, Short.MAX_VALUE)
         );
-        ind_data1Layout.setVerticalGroup(
-            ind_data1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        ind_CadastraCronogramaLayout.setVerticalGroup(
+            ind_CadastraCronogramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 40, Short.MAX_VALUE)
         );
 
-        btn_data1.add(ind_data1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
+        btn_CadastrarCronograma.add(ind_CadastraCronograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Cronogramas");
-        btn_data1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+        btn_CadastrarCronograma.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("CONSULTAS");
+        jLabel11.setToolTipText("");
+
+        btn_CadastrarAluno1.setBackground(new java.awt.Color(255, 102, 0));
+        btn_CadastrarAluno1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btn_CadastrarAluno1MousePressed(evt);
+            }
+        });
+        btn_CadastrarAluno1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ind_CadastraAluno1.setOpaque(false);
+        ind_CadastraAluno1.setPreferredSize(new java.awt.Dimension(4, 40));
+
+        javax.swing.GroupLayout ind_CadastraAluno1Layout = new javax.swing.GroupLayout(ind_CadastraAluno1);
+        ind_CadastraAluno1.setLayout(ind_CadastraAluno1Layout);
+        ind_CadastraAluno1Layout.setHorizontalGroup(
+            ind_CadastraAluno1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 4, Short.MAX_VALUE)
+        );
+        ind_CadastraAluno1Layout.setVerticalGroup(
+            ind_CadastraAluno1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        btn_CadastrarAluno1.add(ind_CadastraAluno1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
+
+        jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Listão");
+        btn_CadastrarAluno1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+
+        btn_CadastrarAluno2.setBackground(new java.awt.Color(255, 102, 0));
+        btn_CadastrarAluno2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btn_CadastrarAluno2MousePressed(evt);
+            }
+        });
+        btn_CadastrarAluno2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ind_CadastraAluno2.setOpaque(false);
+        ind_CadastraAluno2.setPreferredSize(new java.awt.Dimension(4, 40));
+
+        javax.swing.GroupLayout ind_CadastraAluno2Layout = new javax.swing.GroupLayout(ind_CadastraAluno2);
+        ind_CadastraAluno2.setLayout(ind_CadastraAluno2Layout);
+        ind_CadastraAluno2Layout.setHorizontalGroup(
+            ind_CadastraAluno2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 4, Short.MAX_VALUE)
+        );
+        ind_CadastraAluno2Layout.setVerticalGroup(
+            ind_CadastraAluno2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        btn_CadastrarAluno2.add(ind_CadastraAluno2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
+
+        jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Cadastrar");
+        btn_CadastrarAluno2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
         javax.swing.GroupLayout sidepaneLayout = new javax.swing.GroupLayout(sidepane);
         sidepane.setLayout(sidepaneLayout);
         sidepaneLayout.setHorizontalGroup(
             sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btn_typo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_fonts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_icons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_btns, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_ConsultarAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_consultar_professor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_consultarCronograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_CadastrarAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_CadastrarProfessor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(sidepaneLayout.createSequentialGroup()
                 .addGroup(sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(sidepaneLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
                         .addGroup(sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
                             .addGroup(sidepaneLayout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(jLabel8))
-                            .addGroup(sidepaneLayout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addGroup(sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addGroup(sidepaneLayout.createSequentialGroup()
-                                        .addGroup(sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel1))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel3)))))
-                        .addGap(0, 72, Short.MAX_VALUE))
-                    .addComponent(btn_data1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)))
+                        .addGap(0, 78, Short.MAX_VALUE))
+                    .addComponent(btn_CadastrarCronograma, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(sidepaneLayout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(jLabel8)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addComponent(btn_CadastrarAluno1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(sidepaneLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(jLabel7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(sidepaneLayout.createSequentialGroup()
+                .addComponent(btn_CadastrarAluno2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         sidepaneLayout.setVerticalGroup(
             sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -458,225 +569,54 @@ public class Home20 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(41, 41, 41)
-                .addComponent(jLabel7)
+                .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_typo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_ConsultarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_fonts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_consultar_professor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_icons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_consultarCronograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_btns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_CadastrarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_CadastrarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_data1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addComponent(btn_CadastrarCronograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_CadastrarAluno1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_CadastrarAluno2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(182, Short.MAX_VALUE))
         );
 
         pnlParent.add(sidepane, java.awt.BorderLayout.LINE_START);
 
         pnlRight.setLayout(new java.awt.CardLayout());
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel4.setText("Datacards");
+        jLabel4.setText("Menu");
 
-        jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel13.setText("All you need to know about data cards to make a reusable and more modern look to the design");
-
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        lbl_instals.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
-        lbl_instals.setForeground(new java.awt.Color(102, 102, 102));
-        lbl_instals.setText("2638");
-
-        jLabel15.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel15.setText("189");
-
-        jLabel16.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel16.setText("Installs");
-
-        jLabel17.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel17.setText("Uninstalls");
-
-        javax.swing.GroupLayout pnlCadastroProfessoresLayout = new javax.swing.GroupLayout(pnlCadastroProfessores);
-        pnlCadastroProfessores.setLayout(pnlCadastroProfessoresLayout);
-        pnlCadastroProfessoresLayout.setHorizontalGroup(
-            pnlCadastroProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCadastroProfessoresLayout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addGroup(pnlCadastroProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel4)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlCadastroProfessoresLayout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addGroup(pnlCadastroProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_instals)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroProfessoresLayout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addGap(26, 26, 26)))
-                        .addGap(45, 45, 45)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel15)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel17)
-                .addContainerGap(15, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(306, 306, 306)
+                .addComponent(jLabel4)
+                .addContainerGap(1142, Short.MAX_VALUE))
         );
-        pnlCadastroProfessoresLayout.setVerticalGroup(
-            pnlCadastroProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCadastroProfessoresLayout.createSequentialGroup()
-                .addGroup(pnlCadastroProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlCadastroProfessoresLayout.createSequentialGroup()
-                        .addGap(292, 292, 292)
-                        .addComponent(jLabel17))
-                    .addGroup(pnlCadastroProfessoresLayout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel13)
-                        .addGap(28, 28, 28)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63)
-                        .addGroup(pnlCadastroProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlCadastroProfessoresLayout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lbl_instals))
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroProfessoresLayout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(jLabel15)
-                                .addGap(53, 53, 53)))))
-                .addContainerGap(190, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(jLabel4)
+                .addContainerGap(576, Short.MAX_VALUE))
         );
 
-        pnlRight.add(pnlCadastroProfessores, "card1");
-
-        jLabel18.setText("Essa é a tela do aluno");
-
-        jtProduto1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Código", "Nome", "Valor Custo", "Quantidade"
-            }
-        ));
-        jScrollPane2.setViewportView(jtProduto1);
-
-        javax.swing.GroupLayout pnlAlunosLayout = new javax.swing.GroupLayout(pnlAlunos);
-        pnlAlunos.setLayout(pnlAlunosLayout);
-        pnlAlunosLayout.setHorizontalGroup(
-            pnlAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAlunosLayout.createSequentialGroup()
-                .addGap(245, 245, 245)
-                .addComponent(jLabel18)
-                .addContainerGap(424, Short.MAX_VALUE))
-            .addGroup(pnlAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlAlunosLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        pnlAlunosLayout.setVerticalGroup(
-            pnlAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlAlunosLayout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addComponent(jLabel18)
-                .addContainerGap(454, Short.MAX_VALUE))
-            .addGroup(pnlAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlAlunosLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        pnlRight.add(pnlAlunos, "card2");
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel11.setText("Essa é a tela do professores");
-
-        jtProduto.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Código", "Nome", "Valor Custo", "Quantidade"
-            }
-        ));
-        jScrollPane1.setViewportView(jtProduto);
-
-        jButton1.setText("jButton1");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton1MousePressed(evt);
-            }
-        });
-
-        jLabel19.setText("jLabel19");
-
-        jtfNome.setText("000");
-
-        javax.swing.GroupLayout pnlProfessoresLayout = new javax.swing.GroupLayout(pnlProfessores);
-        pnlProfessores.setLayout(pnlProfessoresLayout);
-        pnlProfessoresLayout.setHorizontalGroup(
-            pnlProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlProfessoresLayout.createSequentialGroup()
-                .addGroup(pnlProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlProfessoresLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel19)
-                        .addGap(44, 44, 44)
-                        .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 210, Short.MAX_VALUE))
-                    .addGroup(pnlProfessoresLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1)))
-                .addContainerGap())
-            .addGroup(pnlProfessoresLayout.createSequentialGroup()
-                .addGap(313, 313, 313)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlProfessoresLayout.setVerticalGroup(
-            pnlProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlProfessoresLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(pnlProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlProfessoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel19)
-                        .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(90, 90, 90)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        pnlRight.add(pnlProfessores, "card3");
+        pnlRight.add(jPanel1, "card2");
 
         pnlParent.add(pnlRight, java.awt.BorderLayout.CENTER);
 
@@ -690,6 +630,27 @@ public class Home20 extends javax.swing.JFrame {
             new Object[][]{},
             new Object[]{"Código", "Nome", "Valor Custo", "quantidade"}
     );
+    
+    private void selectButton(JPanel btn, JPanel inc){
+        
+      
+        for (JPanel panel : listaDeInc) {
+            if(panel == inc)
+            panel.setOpaque(true);
+            else{// ou outra propriedade que deseja modificar
+            panel.setOpaque(false);
+            }
+        }
+        for (JPanel panel : listaDebtn) {
+            if(panel == btn)
+                setColor(panel); // ou outra propriedade que deseja modificar
+            else{
+                resetColor(panel);
+                        }
+        }
+       
+    }
+    
     private void sidepaneMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidepaneMouseDragged
         // TODO add your handling code here:
 
@@ -700,90 +661,43 @@ public class Home20 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_sidepaneMousePressed
 
-    private void btn_typoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_typoMousePressed
+    private void btn_ConsultarAlunoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ConsultarAlunoMousePressed
         // TODO add your handling code here:
+        selectButton(btn_ConsultarAluno, ind_consultaAluno);
 
-        setColor(btn_typo);
-        resetColor(btn_data);
-        resetColor(btn_btns);
-        resetColor(btn_fonts);
-        resetColor(btn_icons);
-        ind_typo.setOpaque(true);
-        ind_btns.setOpaque(false);
-        ind_data.setOpaque(false);
-        ind_fonts.setOpaque(false);
-        ind_icons.setOpaque(false);
+        cardLayout.show(pnlRight, "consultarAluno");
 
-        cardLayout.show(pnlRight, "card2");
+    }//GEN-LAST:event_btn_ConsultarAlunoMousePressed
 
-    }//GEN-LAST:event_btn_typoMousePressed
-
-    private void btn_fontsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_fontsMousePressed
+    private void btn_consultar_professorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_consultar_professorMousePressed
         // TODO add your handling code here:
-        setColor(btn_fonts);
-        resetColor(btn_data);
-        resetColor(btn_btns);
-        resetColor(btn_typo);
-        resetColor(btn_icons);
+        selectButton(btn_consultar_professor, ind_ConsultaProfessor);
 
-        //indicators
-        ind_typo.setOpaque(false);
-        ind_btns.setOpaque(false);
-        ind_data.setOpaque(false);
-        ind_fonts.setOpaque(true);
-        ind_icons.setOpaque(false);
+        cardLayout.show(pnlRight, "consultarProfessor");
 
-        cardLayout.show(pnlRight, "card3");
+    }//GEN-LAST:event_btn_consultar_professorMousePressed
 
-    }//GEN-LAST:event_btn_fontsMousePressed
-
-    private void btn_iconsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_iconsMousePressed
+    private void btn_consultarCronogramaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_consultarCronogramaMousePressed
         // TODO add your handling code here:
-        setColor(btn_icons);
-        resetColor(btn_data);
-        resetColor(btn_btns);
-        resetColor(btn_fonts);
-        resetColor(btn_typo);
+        selectButton(btn_consultarCronograma, ind_ConsultaCronograma);
+        
+        cardLayout.show(pnlRight,"consultarCronograma");
 
-        ind_typo.setOpaque(false);
-        ind_btns.setOpaque(false);
-        ind_data.setOpaque(false);
-        ind_fonts.setOpaque(false);
-        ind_icons.setOpaque(true);
+    }//GEN-LAST:event_btn_consultarCronogramaMousePressed
 
-    }//GEN-LAST:event_btn_iconsMousePressed
-
-    private void btn_btnsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_btnsMousePressed
+    private void btn_CadastrarAlunoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CadastrarAlunoMousePressed
         // TODO add your handling code here:
-        setColor(btn_btns);
-        resetColor(btn_data);
-        resetColor(btn_typo);
-        resetColor(btn_fonts);
-        resetColor(btn_icons);
+        selectButton(btn_CadastrarAluno, ind_CadastraAluno);
+        
+        cardLayout.show(pnlRight,"cadastrarAluno");
+    }//GEN-LAST:event_btn_CadastrarAlunoMousePressed
 
-        ind_typo.setOpaque(false);
-        ind_btns.setOpaque(true);
-        ind_data.setOpaque(false);
-        ind_fonts.setOpaque(false);
-        ind_icons.setOpaque(false);
-    }//GEN-LAST:event_btn_btnsMousePressed
-
-    private void btn_dataMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_dataMousePressed
+    private void btn_CadastrarProfessorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CadastrarProfessorMousePressed
         // TODO add your handling code here:
-        setColor(btn_data);
-        resetColor(btn_typo);
-        resetColor(btn_btns);
-        resetColor(btn_fonts);
-        resetColor(btn_icons);
+        selectButton(btn_CadastrarProfessor, ind_CadastraProfessor);
 
-        ind_typo.setOpaque(false);
-        ind_btns.setOpaque(false);
-        ind_data.setOpaque(true);
-        ind_fonts.setOpaque(false);
-        ind_icons.setOpaque(false);
-
-        cardLayout.show(pnlRight, "card1");
-    }//GEN-LAST:event_btn_dataMousePressed
+        cardLayout.show(pnlRight, "cadastrarProfessor");
+    }//GEN-LAST:event_btn_CadastrarProfessorMousePressed
 
 
     private void lblMaximizeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMaximizeMousePressed
@@ -823,56 +737,19 @@ public class Home20 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pnlTopMouseClicked
 
-    private void btn_data1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_data1MousePressed
+    private void btn_CadastrarCronogramaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CadastrarCronogramaMousePressed
+        selectButton(btn_CadastrarCronograma, ind_CadastraCronograma);
+
+        cardLayout.show(pnlRight, "cadastrarCronograma");
+    }//GEN-LAST:event_btn_CadastrarCronogramaMousePressed
+
+    private void btn_CadastrarAluno1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CadastrarAluno1MousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_data1MousePressed
+    }//GEN-LAST:event_btn_CadastrarAluno1MousePressed
 
-    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+    private void btn_CadastrarAluno2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CadastrarAluno2MousePressed
         // TODO add your handling code here:
-        filtrar();
-    }//GEN-LAST:event_jButton1MousePressed
-
-    private void filtrar() {
-        try {
-            if (jtfNome.getText().isEmpty()) {
-                //preencherTabela();
-            } else {
-                ProfessorServicos ps = ServicosFactory.getProfessorServicos();
-                //String pesquisa = (String) jtfNome.getSelectedItem();
-                String query;
-//                if (pesquisa.equals("Código")) {
-//                    query = "where idproduto = " + jtfNome.getText();
-//                } else if (pesquisa.equals("Nome")) {
-//                    query = "where nome like '%" + jtfNome.getText() + "%' ";
-//                } else if (pesquisa.equals("Valor Custo")) {
-//                    query = "where valorcusto = " + jtfNome.getText();
-//                } else {
-//                    query = "where quantidade = " + jtfNome.getText();
-//                }//fim do else
-                query = "where idproduto = " + jtfNome.getText();
-                //Criando um ArrayLista<produtoVO> vaziom, para receber o ArrayList com os dados
-                ArrayList<ProfessorVO> prod = new ArrayList<>();
-
-                //Recebendo o ArrayList cheio no Produto
-                prod = ps.filtrarProduto(query);
-
-                for (int i = 0; i < prod.size(); i++) {
-                    dtm.addRow(new String[]{
-                        //String.valueOf(prod.get(i).getIdProduto()),
-                        String.valueOf(prod.get(i).getNome()), //String.valueOf(prod.get(i).getValorCusto()),
-                    //String.valueOf(prod.get(i).getQuantidade()),
-                    });
-                }//fecha o laço for
-
-                //Adicionando o modelo de tabela com os dados na tabela jtProduto
-                jtProduto.setModel(dtm);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Erro ao filtrar produto! GUIManutençãoProduto.filtrar " + e.getMessage());
-        }
-    }//fecha o método filtrar
+    }//GEN-LAST:event_btn_CadastrarAluno2MousePressed
 
     // set and reset color
     void setColor(JPanel panel) {
@@ -919,19 +796,22 @@ public class Home20 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel btn_btns;
-    private javax.swing.JPanel btn_data;
-    private javax.swing.JPanel btn_data1;
-    private javax.swing.JPanel btn_fonts;
-    private javax.swing.JPanel btn_icons;
-    private javax.swing.JPanel btn_typo;
-    private javax.swing.JPanel ind_btns;
-    private javax.swing.JPanel ind_data;
-    private javax.swing.JPanel ind_data1;
-    private javax.swing.JPanel ind_fonts;
-    private javax.swing.JPanel ind_icons;
-    private javax.swing.JPanel ind_typo;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel btn_CadastrarAluno;
+    private javax.swing.JPanel btn_CadastrarAluno1;
+    private javax.swing.JPanel btn_CadastrarAluno2;
+    private javax.swing.JPanel btn_CadastrarCronograma;
+    private javax.swing.JPanel btn_CadastrarProfessor;
+    private javax.swing.JPanel btn_ConsultarAluno;
+    private javax.swing.JPanel btn_consultarCronograma;
+    private javax.swing.JPanel btn_consultar_professor;
+    private javax.swing.JPanel ind_CadastraAluno;
+    private javax.swing.JPanel ind_CadastraAluno1;
+    private javax.swing.JPanel ind_CadastraAluno2;
+    private javax.swing.JPanel ind_CadastraCronograma;
+    private javax.swing.JPanel ind_CadastraProfessor;
+    private javax.swing.JPanel ind_ConsultaCronograma;
+    private javax.swing.JPanel ind_ConsultaProfessor;
+    private javax.swing.JPanel ind_consultaAluno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -939,10 +819,6 @@ public class Home20 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -951,23 +827,13 @@ public class Home20 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jtProduto;
-    private javax.swing.JTable jtProduto1;
-    private javax.swing.JTextField jtfNome;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblMaximize;
     private javax.swing.JLabel lblMinimize;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JLabel lbl_instals;
     private javax.swing.JPanel pnlActions;
-    private javax.swing.JPanel pnlAlunos;
-    private javax.swing.JPanel pnlCadastroProfessores;
     private javax.swing.JPanel pnlParent;
-    private javax.swing.JPanel pnlProfessores;
     private javax.swing.JPanel pnlRight;
     private javax.swing.JPanel pnlTitle;
     private javax.swing.JPanel pnlTop;

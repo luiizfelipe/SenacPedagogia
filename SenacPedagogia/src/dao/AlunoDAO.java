@@ -1,6 +1,6 @@
-
 package dao;
 
+import static java.lang.Integer.parseInt;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import modelo.AlunoVO;
 import persistencia.ConexaoBanco;
 
@@ -17,7 +18,7 @@ import persistencia.ConexaoBanco;
  * @author cralves
  */
 public class AlunoDAO {
-    
+
     public void cadastrarAluno(AlunoVO aVO) throws SQLException {
         Connection con = new ConexaoBanco().getConexao();
 
@@ -39,14 +40,15 @@ public class AlunoDAO {
             if (!aVO.getTelefone().matches("[0-9]+")) {
                 throw new IllegalArgumentException("O número de telefone deve conter apenas dígitos.");
             }
-
-            String sql = "INSERT INTO alunos (nome, data_nascimento, cpf, telefone, endereco) VALUES (?, ?, ?, ?, ?)";
+            //insert into alunos (id_aluno, nome,email,data_nasc,endereco,fone,create_dat,loaded_at,cpf) VALUES (null,'LUIZ','EMAIL',now(),'Rua','51',now(),now(),'123');
+            String sql = "INSERT INTO alunos (id_aluno, nome,email,data_nasc,endereco,fone,create_dat,loaded_at,cpf) VALUES (null,?,?, ?, ?, ?, now(),now(),?)";
             PreparedStatement pstm = con.prepareStatement(sql);
             pstm.setString(1, aVO.getNome());
-            pstm.setString(2, dataFormatada); // Inserindo a data formatada
-            pstm.setString(3, aVO.getCpf());
-            pstm.setString(4, aVO.getTelefone());
-            pstm.setString(5, aVO.getEndereco());
+            pstm.setString(2, aVO.getEmail());
+            pstm.setString(3, dataFormatada); // Inserindo a data formatada
+            pstm.setString(4, aVO.getEndereco());
+            pstm.setString(5, aVO.getTelefone());
+            pstm.setString(6, aVO.getCpf());
 
             pstm.executeUpdate();
             pstm.close();
@@ -56,105 +58,118 @@ public class AlunoDAO {
         } finally {
             con.close();
         }
-    }//fim do método cadastrarProduto    
-    
+    }//fim do método cadastrarAluno    
+
     public ArrayList<AlunoVO> buscarAluno() throws SQLException {
-        
+
         Connection con = new ConexaoBanco().getConexao();
-        
+
         try {
-            String sql = "Select * from produto";
+            String sql = "Select * from alunos";
             PreparedStatement pstm = con.prepareStatement(sql);
-            
+
             ResultSet rs = pstm.executeQuery();
-            ArrayList<AlunoVO> pro = new ArrayList<>();
-            
-            while( rs.next() ){
+            ArrayList<AlunoVO> alun = new ArrayList<>();
+
+            while (rs.next()) {
                 AlunoVO aVO = new AlunoVO();
-                
-                //aVO.setIdProduto(rs.getLong("idproduto"));
+
+                aVO.setIdAluno(rs.getLong("id_aluno"));
                 aVO.setNome(rs.getString("nome"));
-                //aVO.setValorCusto(rs.getDouble("valorCusto"));
-                //aVO.setQuantidade(rs.getInt("quantidade"));
-                
-                pro.add(aVO);
+                aVO.setEmail(rs.getString("email"));
+                aVO.setData_nascimento(rs.getString("data_nasc"));
+                aVO.setEndereco(rs.getString("endereco"));
+                aVO.setTelefone(rs.getString("fone"));
+                aVO.setCreateAccount(rs.getString("create_dat"));
+                aVO.setLastLogon(rs.getString("loaded_at"));
+                aVO.setCpf(rs.getString("cpf"));
+
+                alun.add(aVO);
             }//fim do while
-            
+
             pstm.close();
-            
-            return pro;
-            
+
+            return alun;
+
         } catch (SQLException se) {
-            throw new SQLException("Erro ao buscar produto! " + se.getMessage());
-        }finally {
+            throw new SQLException("Erro ao buscar alunuto! " + se.getMessage());
+        } finally {
             con.close();
         }//fim da finally
-    }//fecha o método buscarProduto
-    
-    public ArrayList<AlunoVO> filtrarAluno(String query) throws SQLException{
+    }//fecha o método buscarAluno
+
+    public ArrayList<AlunoVO> filtrarAluno(String query) throws SQLException {
         Connection con = new ConexaoBanco().getConexao();
-        
+
         try {
-            String sql = "select * from produto " + query;
+            String sql = "select * from alunos " + query + " ;";
+             
             PreparedStatement pstm = con.prepareStatement(sql);
+//            JOptionPane.showMessageDialog(
+//                    null,
+//                    "Err: " + sql);
             ResultSet rs = pstm.executeQuery();
-            
-            ArrayList<AlunoVO> pro = new ArrayList<>();
-            while(rs.next() ){
+
+            ArrayList<AlunoVO> alun = new ArrayList<>();
+            while (rs.next()) {
                 AlunoVO aVO = new AlunoVO();
-                //aVO.setIdProduto(rs.getLong("idproduto"));
+                aVO.setIdAluno(rs.getLong("id_aluno"));
                 aVO.setNome(rs.getString("nome"));
-                //aVO.setValorCusto(rs.getDouble("valorcusto"));
-                //aVO.setQuantidade(rs.getInt("quantidade"));
-                
-                pro.add(aVO);
+                aVO.setEmail(rs.getString("email"));
+                aVO.setData_nascimento(rs.getString("data_nasc"));
+                aVO.setEndereco(rs.getString("endereco"));
+                aVO.setTelefone(rs.getString("fone"));
+                aVO.setCreateAccount(rs.getString("create_dat"));
+                aVO.setLastLogon(rs.getString("loaded_at"));
+                aVO.setCpf(rs.getString("cpf"));
+
+                alun.add(aVO);
             }//fim do while
             pstm.close();
-            return pro;
+            return alun;
         } catch (SQLException se) {
-            throw new SQLException("Erro ao filtrar produto! " + se.getMessage());
-        }finally{
+            throw new SQLException("Erro ao filtrar alunuto! " + se.getMessage());
+        } finally {
             con.close();
         }//fim da finally
-    }//fim do método filtrarProduto
-    
-    public void deletarAluno( long idproduto) throws SQLException{
+    }//fim do método filtrarAluno
+
+    public void deletarAluno(long idalunuto) throws SQLException {
         Connection con = new ConexaoBanco().getConexao();
-        
-        try{
-            String sql = "delete from produto where idproduto = ?";
+
+        try {
+            String sql = "delete from alunuto where idalunuto = ?";
             PreparedStatement pstm = con.prepareStatement(sql);
-            
-            pstm.setLong(1, idproduto);
+
+            pstm.setLong(1, idalunuto);
             pstm.execute();
             pstm.close();
-        }catch (SQLException se){
-            throw new SQLException("Erro ao deletar produto! ProdutoDAO " + se.getMessage());
-        }finally{
+        } catch (SQLException se) {
+            throw new SQLException("Erro ao deletar alunuto! AlunoDAO " + se.getMessage());
+        } finally {
             con.close();
         }//fim da finally
-    }//fim do método deletarProduto
-    
-    
-    public void alterarAluno(AlunoVO aVO) throws SQLException{
+    }//fim do método deletarAluno
+
+    public void alterarAluno(AlunoVO aVO) throws SQLException {
         Connection con = new ConexaoBanco().getConexao();
         /*try {
             String sql;
-            sql = "Update produto set "
+            sql = "Update alunuto set "
                     + "nome = ' " +aVO.getNome() + " ' ,  "
                     + "valorcusto = " + aVO.getValorCusto() + ", "
                     + "quantidade = " + aVO.getQuantidade() + " "
-                    + " where idproduto = " + aVO.getIdProduto() + " ";
+                    + " where idalunuto = " + aVO.getIdAluno() + " ";
             
             PreparedStatement pstm = con.prepareStatement(sql);
             pstm.executeUpdate();
             pstm.close();
             
         } catch (SQLException se) {
-            throw new SQLException("Erro ao Alterar Produto!" + se.getMessage());
+            throw new SQLException("Erro ao Alterar Aluno!" + se.getMessage());
         }finally{
             con.close();;
         }
-       */
-        }
-}//fecha a classe ProdutoDAO
+         */
+    }
+}//fecha a classe AlunoDAO

@@ -15,7 +15,7 @@ public class ConexaoBanco {
     public Connection getConexao() {
         Connection c = null;
         try {
-            String url = "jdbc:mysql://localhost:3306/senacpedagogia?user=root&password=";
+            String url = "jdbc:mysql://localhost:3306/pedagogia?user=root&password=";
             c = DriverManager.getConnection(url);
         } catch (SQLException se) {
             JOptionPane.showMessageDialog(null, "Erro ao conectar! " + se.getMessage());

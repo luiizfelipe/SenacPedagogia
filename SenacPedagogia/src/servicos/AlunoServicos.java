@@ -20,18 +20,18 @@ public class AlunoServicos {
     public void cadastrarAluno(AlunoVO pVO) throws SQLException {
         AlunoDAO aDAO = DAOFactory.getAlunoDAO();
         aDAO.cadastrarAluno(pVO);
-    }//fim do método cadastrarProduto
+    }//fim do método cadastrarAluno
     
     public ArrayList<AlunoVO> buscarAluno() throws SQLException{
         AlunoDAO aDAO = DAOFactory.getAlunoDAO();
         return aDAO.buscarAluno();
-    }//fim do método buscarProduto
+    }//fim do método buscarAluno
     
     
-     public ArrayList<AlunoVO> filtrarProduto(String query) throws SQLException{
+     public ArrayList<AlunoVO> filtrarAluno(String query) throws SQLException{
         AlunoDAO aDAO = DAOFactory.getAlunoDAO();
         return aDAO.filtrarAluno(query);
-    }//fim do método buscarProduto
+    }//fim do método buscarAluno
     
     public void deletarAluno(int idproduto) throws SQLException{
         AlunoDAO aDAO = DAOFactory.getAlunoDAO();
@@ -41,6 +41,6 @@ public class AlunoServicos {
     public void alterarAluno(AlunoVO pVO) throws SQLException{
         AlunoDAO aDAO = DAOFactory.getAlunoDAO();
         aDAO.alterarAluno(pVO);
-    }//fim do método alterarProduto
+    }//fim do método alterarAluno
     
-}//fim da classe ProdutoServicos
+}//fim da classe AlunoServicos

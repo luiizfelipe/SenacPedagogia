@@ -18,5 +18,11 @@ public class ServicosFactory {
         return professorServicos;
     }
     
+    private static CronogramaServicos CronogramaServicos = new CronogramaServicos();
+    
+    public static CronogramaServicos getCronogramaServicos(){
+        return CronogramaServicos;
+    }
+    
     
 }//fecha a classe ServicosFactory
