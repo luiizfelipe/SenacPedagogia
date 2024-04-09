@@ -71,6 +71,8 @@ public class ConsultarAluno extends javax.swing.JPanel {
                 "Código", "Nome", "Valor Custo", "Quantidade"
             }
         ));
+        jtAluno.setEnabled(false);
+        jtAluno.setShowVerticalLines(false);
         jScrollPane1.setViewportView(jtAluno);
 
         jButton1.setText("FILTRAR");
@@ -125,13 +127,10 @@ public class ConsultarAluno extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(103, 103, 103)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel20)
-                                    .addComponent(jLabel21))
-                                .addGap(35, 35, 35))
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel21)
                             .addComponent(jLabel19))
-                        .addGap(77, 77, 77)
+                        .addGap(109, 109, 109)
                         .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -147,11 +146,8 @@ public class ConsultarAluno extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(125, 125, 125)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

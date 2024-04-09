@@ -5,11 +5,12 @@
         <group name="All"/>
         <group name="NetBeansProjects"/>
         <group>
-            <file>file:/C:/Users/luizo/source/repos/SenacPedagogia/SenacPedagogia/src/view/panel/ConsultarAluno.java</file>
-            <file>file:/C:/Users/luizo/source/repos/SenacPedagogia/SenacPedagogia/src/dao/CronogramaDAO.java</file>
-            <file>file:/C:/Users/luizo/source/repos/SenacPedagogia/SenacPedagogia/src/view/panel/CadastrarProfessor.java</file>
-            <file>file:/C:/Users/luizo/source/repos/SenacPedagogia/SenacPedagogia/src/view/panel/ConsultarCronograma.java</file>
-            <file>file:/C:/Users/luizo/source/repos/SenacPedagogia/SenacPedagogia/src/view/panel/ConsultarProfessor.java</file>
+            <file>file:/C:/Users/292100561/Downloads/SenacPedagogia/SenacPedagogia/src/view/panel/CadastrarProfessor.java</file>
+            <file>file:/C:/Users/292100561/Downloads/SenacPedagogia/SenacPedagogia/src/view/panel/ConsultarCronograma.java</file>
+            <file>file:/C:/Users/292100561/Downloads/SenacPedagogia/SenacPedagogia/src/view/panel/ConsultarProfessor.java</file>
+            <file>file:/C:/Users/292100561/Downloads/SenacPedagogia/SenacPedagogia/src/view/panel/CadastrarAluno.java</file>
+            <file>file:/C:/Users/292100561/Downloads/SenacPedagogia/SenacPedagogia/src/view/panel/CadastrarCronograma.java</file>
+            <file>file:/C:/Users/292100561/Downloads/SenacPedagogia/SenacPedagogia/src/view/panel/ConsultarAluno.java</file>
         </group>
     </open-files>
 </project-private>

@@ -115,6 +115,11 @@ public class CadastrarCronograma extends javax.swing.JPanel {
 
         jbPreencher.setBackground(new java.awt.Color(204, 204, 204));
         jbPreencher.setText("Preencher nome Curso");
+        jbPreencher.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jbPreencherMousePressed(evt);
+            }
+        });
         jbPreencher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbPreencherActionPerformed(evt);
@@ -154,16 +159,11 @@ public class CadastrarCronograma extends javax.swing.JPanel {
                         .addComponent(jbPreencher)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -269,8 +269,13 @@ public class CadastrarCronograma extends javax.swing.JPanel {
     
     private void jbPreencherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPreencherActionPerformed
 
-            Connection con = new ConexaoBanco().getConexao();
+            
+    }//GEN-LAST:event_jbPreencherActionPerformed
+
+    private void jbPreencherMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPreencherMousePressed
+       Connection con = new ConexaoBanco().getConexao();
         try {
+             String aja = "";
             
             String sql = "Select * from turma";
             PreparedStatement pstm = con.prepareStatement(sql);
@@ -280,7 +285,7 @@ public class CadastrarCronograma extends javax.swing.JPanel {
             
             while( rs.next() ){
                 TurmaVO pVO = new TurmaVO();
-                pVO.setId(rs.getLong("id_turma"));
+                pVO.setId(rs.getLong("id"));
                 pVO.setId_professor(rs.getInt("id_professor"));
                 pVO.setId_curso(rs.getInt("id_curso"));
                 pVO.setData_inicio(rs.getString("data_inicio"));
@@ -290,9 +295,21 @@ public class CadastrarCronograma extends javax.swing.JPanel {
             }//fim do while
             
             TurmaVO t = buscarPorId(pro, parseInt(jtfIdValue.getText()));
+            
+            String sql2 = "SELECT * FROM curso WHERE id = " + t.getId_curso() + ";";
+            
+            PreparedStatement pstma = con.prepareStatement(sql2);
+            ResultSet ra = pstma.executeQuery();
+            while (ra.next()){
+            
+            
+            
+               aja = ra.getString("nomeCurso");
+            }             
+            jtfCursoValue.setText(aja);
+            pstma.close();
             pstm.close();
             
-            jtfIdValue.setText(String.valueOf(t.getId_curso()));
          
         } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Erro! GUICadProfessors " + e.getMessage());
@@ -303,7 +320,7 @@ public class CadastrarCronograma extends javax.swing.JPanel {
                 Logger.getLogger(CadastrarCronograma.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_jbPreencherActionPerformed
+    }//GEN-LAST:event_jbPreencherMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -28,6 +28,7 @@ public class ConsultarCronograma extends javax.swing.JPanel {
      */
     public ConsultarCronograma() {
         initComponents();
+        preencherTabela();
     }
 
     /**
@@ -46,6 +47,12 @@ public class ConsultarCronograma extends javax.swing.JPanel {
         jLabel19 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jtCronograma.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -135,7 +142,12 @@ public class ConsultarCronograma extends javax.swing.JPanel {
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         filtrar();
     }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+preencherTabela();        // TODO add your handling code here:
+    }//GEN-LAST:event_formComponentShown
     private void preencherTabela() {
+        limparTabela();
         try {
             //Busca objeto na CronogramaServicos
             CronogramaServicos ps = ServicosFactory.getCronogramaServicos();

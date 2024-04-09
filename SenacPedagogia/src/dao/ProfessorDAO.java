@@ -5,7 +5,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import modelo.ProfessorVO;
 import persistencia.ConexaoBanco;
 
@@ -15,37 +18,53 @@ import persistencia.ConexaoBanco;
  */
 public class ProfessorDAO {
     
-    public void cadastrarProfessor(ProfessorVO pVO) throws SQLException {
+    public void cadastrarProfessor(ProfessorVO pVO) throws SQLException, ParseException {
         
        
         Connection con = new ConexaoBanco().getConexao();
         
         try {
             // INSERT INTO Professores VALUES (NULL, " NOME PROFESSOR", "EMAIL@GMAIL", '2023-01-01', 'Rua', 'telefone', '123123', now(), now());
-            
+            if (pVO.getNome() == null || pVO.getNome().trim().isEmpty()) {
+                throw new IllegalArgumentException("Nome do aluno não pode estar vazio.");
+            }
+            // Convertendo a data inserida pelo usuário para o formato aceito pelo banco de dados
+            SimpleDateFormat formatarEntrada = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat formatarSaida = new SimpleDateFormat("yyyy-MM-dd");
+            Date data = formatarEntrada.parse(pVO.getData_nascimento());
+            String dataFormatada = formatarSaida.format(data);
+
+            if (pVO.getCpf().length() != 11) {
+                throw new IllegalArgumentException("CPF deve conter 11 dígitos.");
+            }
+
+            if (!pVO.getTelefone().matches("[0-9]+")) {
+                throw new IllegalArgumentException("O número de telefone deve conter apenas dígitos.");
+            }
             /*
             
             CREATE TABLE professores (
-            idProfessor INTEGER PRIMARY KEY AUTO_INCREMENT,
-            nome VARCHAR(255),
-            email VARCHAR(255),
-            cpf VARCHAR(14),
-            data_nascimento DATE,
-            endereco VARCHAR(255),
-            telefone VARCHAR(20),
-            createAccount DATE,
-            lastLogin DATE
+            id_professor | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nome         | varchar(255) | YES  |     | NULL    |                |
+| email        | varchar(255) | YES  |     | NULL    |                |
+| cpf          | varchar(14)  | YES  |     | NULL    |                |
+| data_nasc    | date         | YES  |     | NULL    |                |
+| endereco     | varchar(255) | YES  |     | NULL    |                |
+| fone         | varchar(20)  | YES  |     | NULL    |                |
+| create_dat   | date         | YES  |     | NULL    |                |
+| loaded_at    | date         | YES  |     | NULL    |                |
++------------
         );
 
             */
-            String sql = "INSERT INTO professores(nome,email) VALUES (null, ?, ?, ?, ?, ?, ?, now(), now())";
+            String sql = "INSERT INTO professores VALUES (null, ?, ?, ?, ?, ?, ?, now(), now());";
             PreparedStatement pstm = con.prepareStatement(sql);
             pstm.setString(1, pVO.getNome() );
             pstm.setString(2, pVO.getEmail());
-            pstm.setString(3, pVO.getData_nascimento());
+            pstm.setString(3, pVO.getCpf());
+            pstm.setString(4, dataFormatada);
             pstm.setString(5, pVO.getEndereco());
-            pstm.setString(4, pVO.getTelefone());
-            pstm.setString(5, pVO.getCpf());
+            pstm.setString(6, pVO.getTelefone());
             
             pstm.execute();
             pstm.close();

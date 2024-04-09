@@ -8,6 +8,7 @@ package servicos;
 import dao.DAOFactory;
 import dao.ProfessorDAO;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import modelo.ProfessorVO;
 
@@ -17,7 +18,7 @@ import modelo.ProfessorVO;
  */
 public class ProfessorServicos {
     
-    public void cadastrarProfessor(ProfessorVO pVO) throws SQLException {
+    public void cadastrarProfessor(ProfessorVO pVO) throws SQLException, ParseException {
         ProfessorDAO aDAO = DAOFactory.getProfessorDAO();
         aDAO.cadastrarProfessor(pVO);
     }//fim do método cadastrarProduto

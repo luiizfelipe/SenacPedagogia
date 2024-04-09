@@ -48,6 +48,12 @@ public class CadastrarProfessor extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+
         jtfNomeValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jtfCpfValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -64,6 +70,7 @@ public class CadastrarProfessor extends javax.swing.JPanel {
         jlEndereco.setText("Endereço");
 
         jtfTelefoneValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfTelefoneValue.setToolTipText("");
 
         jtfDataNascValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -122,10 +129,6 @@ public class CadastrarProfessor extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(93, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlEmail)
@@ -147,13 +150,12 @@ public class CadastrarProfessor extends javax.swing.JPanel {
                     .addComponent(jtfTelefoneValue)
                     .addComponent(jtfEnderecoValue))
                 .addGap(40, 40, 40))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -239,6 +241,10 @@ public class CadastrarProfessor extends javax.swing.JPanel {
         cadastrar();
         limpar();
     }//GEN-LAST:event_jPanel1MousePressed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+            // TODO add your handling code here:
+    }//GEN-LAST:event_formComponentShown
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

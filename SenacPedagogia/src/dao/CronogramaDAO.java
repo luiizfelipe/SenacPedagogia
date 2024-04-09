@@ -22,7 +22,7 @@ public class CronogramaDAO {
         
         try {
             //INSERT INTO alunos VALUES (null, 'Nome',12/2/2005,'51989638990','Rua Vladimir Heronzeg 25', '12312312331');
-            String sql = "INSERT INTO cronograma VALUES (?,?,?,?)";
+            String sql = "INSERT INTO cronograma VALUES (NULL,?,?,?,?)";
             //String sql = "INSERT INTO alunos VALUES (null, 'Nome',DATE('2005-2-15'),'51989638990','Rua Vladimir Heronzeg 25', '12312312331')";
             PreparedStatement pstm = con.prepareStatement(sql);
             pstm.setLong(1, pVO.getId() );

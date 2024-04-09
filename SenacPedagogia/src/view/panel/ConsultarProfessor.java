@@ -50,6 +50,12 @@ public class ConsultarProfessor extends javax.swing.JPanel {
         jtfCpf = new javax.swing.JTextField();
         jtfEmail = new javax.swing.JTextField();
 
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+
         jtProfessor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -86,12 +92,6 @@ public class ConsultarProfessor extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jtfNome.setText("jTextField1");
-
-        jtfCpf.setText("jTextField2");
-
-        jtfEmail.setText("jTextField3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -152,8 +152,12 @@ public class ConsultarProfessor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        filtrar();        // TODO add your handling code here:
+        //filtrar();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        preencherTabelaProfessor();// TODO add your handling code here:
+    }//GEN-LAST:event_formComponentShown
     private void preencherTabelaProfessor(){
         limparTabela();
         try {
@@ -196,72 +200,72 @@ public class ConsultarProfessor extends javax.swing.JPanel {
     }//fim do método limparTabela
 //    
 //    
-    private void filtrar(){
-         limparTabela();
-        String query;
-        try {
-
-            ProfessorServicos ps = ServicosFactory.getProfessorServicos();
-            //String pesquisa = (String) jcbPesquisaPro.getSelectedItem();
-            query = "WHERE";
-            boolean adicionouFiltro = false;
-
-            if (!jtfNome.getText().isEmpty()) {
-                query += " nome LIKE '%" + jtfNome.getText() + "%'";
-                adicionouFiltro = true;
-            }
-
-            if (!jtfCpf.getText().isEmpty()) {
-                if (adicionouFiltro) {
-                    query += " AND";
-                }
-                query += " cpf LIKE '%" + jtfCpf.getText() + "%'";
-                adicionouFiltro = true;
-            }
-
-            if (!jtfEmail.getText().isEmpty()) {
-                if (adicionouFiltro) {
-                    query += " AND";
-                }
-                query += " email LIKE '%" + jtfEmail.getText() + "%'";
-                adicionouFiltro = true;
-            }
-
-            if (!adicionouFiltro) {
-                JOptionPane.showMessageDialog(
-                        null,
-                        "Insira alguma propriedade para filtrar");
-                preencherTabela();
-                return;
-            }    //Criando um ArrayLista<alunoVO> vaziom, para receber o ArrayList com os dados
-            ArrayList<ProfessorVO> prod = new ArrayList<>();
-            
-            //Recebendo o ArrayList cheio no Aluno
-           prod =ps.filtrarAluno(query);
-           
-           for ( int i = 0; i < prod.size(); i++){
-                dtm.addRow(new String[] {
-                    String.valueOf(prod.get(i).getIdProfessor()),
-                    String.valueOf(prod.get(i).getNome()),
-                    String.valueOf(prod.get(i).getTelefone()),
-                    String.valueOf(prod.get(i).getCpf()),
-                    String.valueOf(prod.get(i).getEmail()),
-                    String.valueOf(prod.get(i).getData_nascimento()),
-                    String.valueOf(prod.get(i).getEndereco()),
-                    String.valueOf(prod.get(i).getCreateAccount()),
-                    String.valueOf(prod.get(i).getLastLogin())
-                });
-            }//fecha o laço for
-           
-           //Adicionando o modelo de tabela com os dados na tabela jtAluno
-           jtAluno.setModel(dtm);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Erro ao filtrar professor! GUIManutençãoAluno.filtrar " + e.getMessage());
-        }
-    }//fecha o método filtrar
+//    private void filtrar(){
+//         limparTabela();
+//        String query;
+//        try {
+//
+//            ProfessorServicos ps = ServicosFactory.getProfessorServicos();
+//            //String pesquisa = (String) jcbPesquisaPro.getSelectedItem();
+//            query = "WHERE";
+//            boolean adicionouFiltro = false;
+//
+//            if (!jtfNome.getText().isEmpty()) {
+//                query += " nome LIKE '%" + jtfNome.getText() + "%'";
+//                adicionouFiltro = true;
+//            }
+//
+//            if (!jtfCpf.getText().isEmpty()) {
+//                if (adicionouFiltro) {
+//                    query += " AND";
+//                }
+//                query += " cpf LIKE '%" + jtfCpf.getText() + "%'";
+//                adicionouFiltro = true;
+//            }
+//
+//            if (!jtfEmail.getText().isEmpty()) {
+//                if (adicionouFiltro) {
+//                    query += " AND";
+//                }
+//                query += " email LIKE '%" + jtfEmail.getText() + "%'";
+//                adicionouFiltro = true;
+//            }
+//
+//            if (!adicionouFiltro) {
+//                JOptionPane.showMessageDialog(
+//                        null,
+//                        "Insira alguma propriedade para filtrar");
+//                preencherTabela();
+//                return;
+//            }    //Criando um ArrayLista<alunoVO> vaziom, para receber o ArrayList com os dados
+//            ArrayList<ProfessorVO> prod = new ArrayList<>();
+//            
+//            //Recebendo o ArrayList cheio no Aluno
+//           prod =ps.filtrarAluno(query);
+//           
+//           for ( int i = 0; i < prod.size(); i++){
+//                dtm.addRow(new String[] {
+//                    String.valueOf(prod.get(i).getIdProfessor()),
+//                    String.valueOf(prod.get(i).getNome()),
+//                    String.valueOf(prod.get(i).getTelefone()),
+//                    String.valueOf(prod.get(i).getCpf()),
+//                    String.valueOf(prod.get(i).getEmail()),
+//                    String.valueOf(prod.get(i).getData_nascimento()),
+//                    String.valueOf(prod.get(i).getEndereco()),
+//                    String.valueOf(prod.get(i).getCreateAccount()),
+//                    String.valueOf(prod.get(i).getLastLogin())
+//                });
+//            }//fecha o laço for
+//           
+//           //Adicionando o modelo de tabela com os dados na tabela jtAluno
+//           jtAluno.setModel(dtm);
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(
+//                    null,
+//                    "Erro ao filtrar professor! GUIManutençãoAluno.filtrar " + e.getMessage());
+//        }
+//    }//fecha o método filtrar
 //    
     private void deletarAluno(){
 //        try {

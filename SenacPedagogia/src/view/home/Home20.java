@@ -28,6 +28,7 @@ import view.panel.CadastrarProfessor;
 import view.panel.ConsultarAluno;
 import view.panel.ConsultarCronograma;
 import view.panel.ConsultarProfessor;
+import view.panel.Exclusao;
 
 /**
  *
@@ -45,7 +46,6 @@ public class Home20 extends javax.swing.JFrame {
      * Creates new form Home20
      */
     public Home20() {
-
         initComponents();
         
         
@@ -57,6 +57,7 @@ public class Home20 extends javax.swing.JFrame {
         listaDeInc.add(ind_CadastraCronograma);
         listaDeInc.add(ind_ConsultaProfessor);
         listaDeInc.add(ind_ConsultaCronograma);
+        listaDeInc.add(ind_Remocao);
         
         listaDebtn = new ArrayList<>();
         listaDebtn.add(btn_ConsultarAluno);
@@ -65,6 +66,7 @@ public class Home20 extends javax.swing.JFrame {
         listaDebtn.add(btn_consultar_professor);
         listaDebtn.add(btn_consultarCronograma);  
         listaDebtn.add(btn_CadastrarCronograma);
+        listaDebtn.add(btn_Remocao);
         
         CadastrarAluno cda = new CadastrarAluno();
         CadastrarProfessor cdp = new CadastrarProfessor();
@@ -74,6 +76,8 @@ public class Home20 extends javax.swing.JFrame {
         ConsultarProfessor ccp = new ConsultarProfessor();
         ConsultarCronograma ccc = new ConsultarCronograma();
         
+        Exclusao exclusaoPainel = new Exclusao();
+        
         pnlRight.add(cda, "cadastrarAluno");
         pnlRight.add(cdp, "cadastrarProfessor");
         pnlRight.add(cdc, "cadastrarCronograma");
@@ -81,6 +85,7 @@ public class Home20 extends javax.swing.JFrame {
         pnlRight.add(cca, "consultarAluno");
         pnlRight.add(ccp, "consultarProfessor");
         pnlRight.add(ccc, "consultarCronograma");
+        pnlRight.add(exclusaoPainel,"exclusaoPainel");
     
         
         Home20.this.getRootPane().setBorder(new LineBorder(new Color(76, 41, 211)));
@@ -178,11 +183,11 @@ public class Home20 extends javax.swing.JFrame {
         btn_CadastrarAluno1 = new javax.swing.JPanel();
         ind_CadastraAluno1 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        btn_CadastrarAluno2 = new javax.swing.JPanel();
-        ind_CadastraAluno2 = new javax.swing.JPanel();
+        btn_Remocao = new javax.swing.JPanel();
+        ind_Remocao = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         pnlRight = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        JPanelMenu = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -296,6 +301,11 @@ public class Home20 extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Senac");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel1MousePressed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 10)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -365,7 +375,7 @@ public class Home20 extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Turmas");
+        jLabel7.setText("Modificações");
         jLabel7.setToolTipText("");
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -490,37 +500,37 @@ public class Home20 extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Listão");
+        jLabel13.setText("Edição");
         btn_CadastrarAluno1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
-        btn_CadastrarAluno2.setBackground(new java.awt.Color(255, 102, 0));
-        btn_CadastrarAluno2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_Remocao.setBackground(new java.awt.Color(255, 102, 0));
+        btn_Remocao.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btn_CadastrarAluno2MousePressed(evt);
+                btn_RemocaoMousePressed(evt);
             }
         });
-        btn_CadastrarAluno2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btn_Remocao.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ind_CadastraAluno2.setOpaque(false);
-        ind_CadastraAluno2.setPreferredSize(new java.awt.Dimension(4, 40));
+        ind_Remocao.setOpaque(false);
+        ind_Remocao.setPreferredSize(new java.awt.Dimension(4, 40));
 
-        javax.swing.GroupLayout ind_CadastraAluno2Layout = new javax.swing.GroupLayout(ind_CadastraAluno2);
-        ind_CadastraAluno2.setLayout(ind_CadastraAluno2Layout);
-        ind_CadastraAluno2Layout.setHorizontalGroup(
-            ind_CadastraAluno2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout ind_RemocaoLayout = new javax.swing.GroupLayout(ind_Remocao);
+        ind_Remocao.setLayout(ind_RemocaoLayout);
+        ind_RemocaoLayout.setHorizontalGroup(
+            ind_RemocaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 4, Short.MAX_VALUE)
         );
-        ind_CadastraAluno2Layout.setVerticalGroup(
-            ind_CadastraAluno2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        ind_RemocaoLayout.setVerticalGroup(
+            ind_RemocaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 40, Short.MAX_VALUE)
         );
 
-        btn_CadastrarAluno2.add(ind_CadastraAluno2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
+        btn_Remocao.add(ind_Remocao, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Cadastrar");
-        btn_CadastrarAluno2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+        jLabel15.setText("Remoção");
+        btn_Remocao.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
         javax.swing.GroupLayout sidepaneLayout = new javax.swing.GroupLayout(sidepane);
         sidepane.setLayout(sidepaneLayout);
@@ -533,31 +543,30 @@ public class Home20 extends javax.swing.JFrame {
             .addComponent(btn_CadastrarProfessor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(sidepaneLayout.createSequentialGroup()
                 .addGroup(sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(sidepaneLayout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addGroup(sidepaneLayout.createSequentialGroup()
-                                .addGroup(sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)))
-                        .addGap(0, 78, Short.MAX_VALUE))
                     .addComponent(btn_CadastrarCronograma, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(sidepaneLayout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(jLabel8)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(sidepaneLayout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addGroup(sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addGroup(sidepaneLayout.createSequentialGroup()
+                                        .addGroup(sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel1))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel3))))
+                            .addGroup(sidepaneLayout.createSequentialGroup()
+                                .addGap(59, 59, 59)
+                                .addComponent(jLabel8)))
+                        .addGap(0, 72, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(btn_CadastrarAluno1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(sidepaneLayout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addComponent(jLabel7)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(sidepaneLayout.createSequentialGroup()
-                .addComponent(btn_CadastrarAluno2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(btn_Remocao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sidepaneLayout.setVerticalGroup(
             sidepaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -589,7 +598,7 @@ public class Home20 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_CadastrarAluno1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_CadastrarAluno2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_Remocao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(182, Short.MAX_VALUE))
         );
 
@@ -599,24 +608,24 @@ public class Home20 extends javax.swing.JFrame {
 
         jLabel4.setText("Menu");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout JPanelMenuLayout = new javax.swing.GroupLayout(JPanelMenu);
+        JPanelMenu.setLayout(JPanelMenuLayout);
+        JPanelMenuLayout.setHorizontalGroup(
+            JPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanelMenuLayout.createSequentialGroup()
                 .addGap(306, 306, 306)
                 .addComponent(jLabel4)
                 .addContainerGap(1142, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        JPanelMenuLayout.setVerticalGroup(
+            JPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanelMenuLayout.createSequentialGroup()
                 .addGap(200, 200, 200)
                 .addComponent(jLabel4)
                 .addContainerGap(576, Short.MAX_VALUE))
         );
 
-        pnlRight.add(jPanel1, "card2");
+        pnlRight.add(JPanelMenu, "JPanelMenu");
 
         pnlParent.add(pnlRight, java.awt.BorderLayout.CENTER);
 
@@ -747,9 +756,15 @@ public class Home20 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_CadastrarAluno1MousePressed
 
-    private void btn_CadastrarAluno2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CadastrarAluno2MousePressed
+    private void btn_RemocaoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_RemocaoMousePressed
+        selectButton(btn_Remocao, ind_Remocao);
+        cardLayout.show(pnlRight, "exclusaoPainel");  
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_CadastrarAluno2MousePressed
+    }//GEN-LAST:event_btn_RemocaoMousePressed
+
+    private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
+    cardLayout.show(pnlRight, "JPanelMenu");        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel1MousePressed
 
     // set and reset color
     void setColor(JPanel panel) {
@@ -796,21 +811,22 @@ public class Home20 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel JPanelMenu;
     private javax.swing.JPanel btn_CadastrarAluno;
     private javax.swing.JPanel btn_CadastrarAluno1;
-    private javax.swing.JPanel btn_CadastrarAluno2;
     private javax.swing.JPanel btn_CadastrarCronograma;
     private javax.swing.JPanel btn_CadastrarProfessor;
     private javax.swing.JPanel btn_ConsultarAluno;
+    private javax.swing.JPanel btn_Remocao;
     private javax.swing.JPanel btn_consultarCronograma;
     private javax.swing.JPanel btn_consultar_professor;
     private javax.swing.JPanel ind_CadastraAluno;
     private javax.swing.JPanel ind_CadastraAluno1;
-    private javax.swing.JPanel ind_CadastraAluno2;
     private javax.swing.JPanel ind_CadastraCronograma;
     private javax.swing.JPanel ind_CadastraProfessor;
     private javax.swing.JPanel ind_ConsultaCronograma;
     private javax.swing.JPanel ind_ConsultaProfessor;
+    private javax.swing.JPanel ind_Remocao;
     private javax.swing.JPanel ind_consultaAluno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -827,7 +843,6 @@ public class Home20 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblMaximize;
     private javax.swing.JLabel lblMinimize;

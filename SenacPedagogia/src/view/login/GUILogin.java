@@ -6,10 +6,16 @@
 package view.login;
 
 import dao.LoginDAO;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import javax.swing.JOptionPane;
 import modelo.LoginVO;
+import persistencia.ConexaoBanco;
+import validation.DbStatus;
 import view.home.Home20;
 
 /**
@@ -22,6 +28,7 @@ public class GUILogin extends javax.swing.JFrame {
      * Creates new form GUILogin
      */
     public GUILogin() {
+
         initComponents();
     }
 
@@ -110,28 +117,30 @@ public class GUILogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     //Métodos Criados Manualmente
-    private void logar(){
+    private void logar() {
         //LoginVO lVO = new LoginVO();
         //lVO.setLogin(jtfLogin.getText());
         //lVO.setSenha(jpfSenha.getText());
-        
+
         //LoginDAO lDAO = new LoginDAO();
         //ResultSet rs = lDAO.autenticarLogin(lVO);
-        
-        if( jtfLogin.getText().equals(jpfSenha.getText()) ){
+        if (jtfLogin.getText().equals("admin")) {
+
             //Chamando a tela que quero abrir
-            Home20 gp = new Home20();
-            gp.setVisible(true);
-            
-            dispose();
-        }else{
+            if (jpfSenha.getText().equals("123")) {
+                Home20 gp = new Home20();
+                gp.setVisible(true);
+
+                dispose();
+            }
+        } else {
             //Enviar uma mensagem de incorreto
             JOptionPane.showMessageDialog(
                     null,
                     "Login ou senha inválidos! ");
         }
     }//fim do métoso logar
-    
+
     //Eventos Gerados
     private void jbtnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLogarActionPerformed
         logar();
@@ -140,7 +149,7 @@ public class GUILogin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws SQLException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -166,8 +175,41 @@ public class GUILogin extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        ConexaoBanco dbStatus = new ConexaoBanco();
+        if (!dbStatus.isServiceOn()) {
+            JOptionPane.showMessageDialog(null, "Não foi possível se conectar ao banco\nINICIANDO MYSQL PELO SCRIPT PADRÃO DO XAMPP");
+
+            String caminhoScript = "C:\\xampp\\mysql_start.bat";
+            try {
+                ProcessBuilder processBuilder = new ProcessBuilder(caminhoScript);
+                Process processo = processBuilder.start();
+                dbStatus.setStatus(dbStatus.isServiceOn());
+
+            } catch (IOException e) {
+                System.err.println("Inicialização do banco falhou: " + e.getMessage());
+            }
+
+            if (!dbStatus.isStatus()) {
+
+                JOptionPane.showMessageDialog(null, "Não foi possível se conectar ao banco\nFechando programa.");
+                System.exit(0);
+            } 
+        }
+        
+        if(!dbStatus.HasPegagogia()){
+            JOptionPane.showMessageDialog(null, "Não foi possível encontrar o banco de dados com nome pedagogia.");
+            dbStatus.createDatabase();
+            
+            if(!dbStatus.HasPegagogia()){
+            System.exit(0);}
+         
+        }  
+        
+        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+
                 new GUILogin().setVisible(true);
             }
         });
